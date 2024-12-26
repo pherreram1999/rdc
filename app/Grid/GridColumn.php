@@ -11,6 +11,7 @@ class GridColumn implements Arrayable
     private string $label;
     public function __construct(
         private string $column,
+        private string $table,
         private GridColumnCollection $collection
     )
     {
@@ -25,6 +26,7 @@ class GridColumn implements Arrayable
         return [
             'column' => $this->column,
             'label' => $this->label,
+            'table' => $this->table,
         ];
     }
 }

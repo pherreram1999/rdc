@@ -13,11 +13,13 @@ class GridColumnCollection implements Arrayable
         array $columns,
         Grid $grid
     ){
+        $tableName = $grid->getTableName();
         foreach ($columns as $column){
             if(gettype($column) != 'string')
                 throw new \Exception("Todas las columnas deben ser string [$column]");
 
-            $this->columns[$column] = new GridColumn($column,$this);
+            $colkey = $tableName .'.' .$column;
+            $this->columns[$colkey] = new GridColumn($column,$tableName,$this);
         }
         $this->_grid = $grid;
 

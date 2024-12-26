@@ -3,11 +3,13 @@
 namespace App\Grid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
 abstract class Grid extends \App\Http\Controllers\Controller {
     protected string $modelClass;
     protected string $title;
 
+    protected string $view = 'Grid';
     private GridColumnCollection $columns;
     private GridRowCollection $rows;
     private string $_table;
@@ -35,10 +37,18 @@ abstract class Grid extends \App\Http\Controllers\Controller {
         );
     }
 
-    public function index()
+    /**
+     * @param Model $model
+     * @return void
+     */
+    protected function beforeMount(mixed $model){
+
+    }
+
+    final public function index()
     {
         $this->init();
-        dd($this->toArray());
+        return Inertia::render($this->view,$this->toArray());
     }
 
 
