@@ -35,5 +35,9 @@ class GridColumnCollection implements Arrayable
         }, $this->columns);
     }
 
+    public function getKeys(): array
+    {
+        return array_keys($this->columns);
+    }
 
 }

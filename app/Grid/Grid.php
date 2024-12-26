@@ -61,6 +61,12 @@ abstract class Grid extends \App\Http\Controllers\Controller {
         return [
             'title' => $this->title,
             'columns' => $this->columns->toArray(),
+            'rows' => $this->rows->toArray(),
         ];
+    }
+
+    public function getColumns(): GridColumnCollection
+    {
+        return $this->columns;
     }
 }
