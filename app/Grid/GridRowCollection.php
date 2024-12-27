@@ -5,10 +5,14 @@ namespace App\Grid;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+/**
+ * @property-read GridActionCollection $actions
+ */
 class GridRowCollection implements Arrayable
 {
 
-    private LengthAwarePaginator $_pagintator;
+    protected GridActionCollection $actions;
+
     private array $rows;
 
     public function __construct(
@@ -16,6 +20,7 @@ class GridRowCollection implements Arrayable
         private Grid $_grid
     )
     {
+        $this->actions = new GridActionCollection();
         $this->init();
     }
 
@@ -37,5 +42,14 @@ class GridRowCollection implements Arrayable
         return array_map(function (GridRow $row){
             return $row->toArray();
         },$this->rows);
+    }
+
+
+    public function __get(string $name): mixed
+    {
+        return match ($name) {
+            'actions' => $this->actions,
+            default => null
+        };
     }
 }

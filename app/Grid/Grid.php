@@ -5,9 +5,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
+/**
+ * @property-read GridToolbar $toolbar
+ */
 abstract class Grid extends \App\Http\Controllers\Controller {
     protected string $modelClass;
     protected string $title;
+    protected string $resource;
+
+    private GridToolbar $toolbar;
 
     protected string $view = 'Grid';
     private GridColumnCollection $columns;
@@ -35,6 +41,11 @@ abstract class Grid extends \App\Http\Controllers\Controller {
             intval(request('page',1)),
             $this
         );
+
+        $this->toolbar = new GridToolbar();
+
+        $this->defaultActions();
+
     }
 
     /**
@@ -43,6 +54,29 @@ abstract class Grid extends \App\Http\Controllers\Controller {
      */
     protected function beforeMount(mixed $model){
 
+    }
+
+    protected function defaultActions(){
+        $this->rows
+            ->actions
+            ->addAction(
+                'Editar',
+                route($this->resource . '.edit',[';id;']),
+                'bi-pencil-square'
+            )
+            ->addAction(
+                'Eliminar',
+                route($this->resource . '.show',[';id;']),
+                'bi-trash'
+            );
+
+        $this->toolbar
+            ->actions
+            ->addAction(
+                'Crear',
+                route($this->resource . '.create'),
+                'bi-plus-square'
+            );
     }
 
     final public function index()
@@ -72,11 +106,20 @@ abstract class Grid extends \App\Http\Controllers\Controller {
             'title' => $this->title,
             'columns' => $this->columns->toArray(),
             'rows' => $this->rows->toArray(),
+            'toolbar' => $this->toolbar->toArray(),
         ];
     }
 
     public function getColumns(): GridColumnCollection
     {
         return $this->columns;
+    }
+
+    public function __get(string $name)
+    {
+        return match ($name) {
+            'toolbar' => $this->toolbar,
+            default => null,
+        };
     }
 }
