@@ -3,9 +3,11 @@
 namespace App\Grid;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
+ * @property-read array $links
  * @property-read GridActionCollection $actions
  */
 class GridRowCollection implements Arrayable
@@ -13,7 +15,9 @@ class GridRowCollection implements Arrayable
 
     protected GridActionCollection $actions;
 
-    private array $rows;
+    protected LengthAwarePaginator $paginator;
+
+    private array $rows = [];
 
     public function __construct(
         private int $page,
@@ -25,16 +29,30 @@ class GridRowCollection implements Arrayable
     }
 
     private function init(){
-        $model = $this->_grid->getModelClass();
+        /** @var Model $model */
+        $model = new ($this->_grid->getModelClass());
+
+        $builder = $model->newQuery();
+
+
+        // aplicamos los creterios de busqueda
+        $request = request();
+        if($request->has('query') && $request->has('column')){
+            $col = str_replace('-','.',$request->query('column'));
+            $builder->where($col,'like','%'.$request->query('query').'%');
+        }
+
+
 
         $cols = $this->_grid->getColumns()->getKeys();
         /** @var LengthAwarePaginator $paginator */
-        $paginator = $model::select($cols)->paginate(15);
-        $paginator->withQueryString();
+        $this->paginator = $builder->select($cols)->paginate(15);
+        $this->paginator->withQueryString();
 
-        foreach ($paginator->items() as $item) {
+        foreach ($this->paginator->items() as $item) {
             $this->rows[] = new GridRow($item,$this);
         }
+
     }
 
     public function toArray(): array
@@ -49,6 +67,7 @@ class GridRowCollection implements Arrayable
     {
         return match ($name) {
             'actions' => $this->actions,
+            'links' => $this->paginator->linkCollection()->toArray(),
             default => null
         };
     }

@@ -46,6 +46,7 @@ abstract class Grid extends \App\Http\Controllers\Controller {
 
         $this->defaultActions();
 
+
     }
 
     /**
@@ -107,6 +108,9 @@ abstract class Grid extends \App\Http\Controllers\Controller {
             'columns' => $this->columns->toArray(),
             'rows' => $this->rows->toArray(),
             'toolbar' => $this->toolbar->toArray(),
+            'pagination' => [
+                'links' => $this->rows->links
+            ]
         ];
     }
 
