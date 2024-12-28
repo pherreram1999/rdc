@@ -7,10 +7,11 @@ import Loading from "@/Components/Loading.vue";
 
 const page = usePage()
 
-const {url,item,method} = page.props as {
+const {url,item,method,destroy} = page.props as {
     url: string,
     method: string
-    item?: Record<string, any>
+    item?: Record<string, any>,
+    destroy?: boolean
 }
 const formNode = ref(null)
 
@@ -28,7 +29,11 @@ onMounted(() => {
         const input = formnode.querySelector(`[name="${key}"]`)
         if(!input) continue
         input.value = val
+        if(destroy)
+            input.setAttribute('readonly','')
     }
+
+
 })
 
 async function submit(){
@@ -69,9 +74,13 @@ function done(){
                         <i class="bi bi-bug"></i>
                         Error
                     </h5>
-                    {{ errorMessage}}
+                    {{ errorMessage }}
                 </div>
             </Transition>
+            <div class="px-4 py-2 rounded font-semibold bg-orange-500 text-xl my-4 text-white">
+                <i class="bi bi-exclamation-triangle"></i>
+                ¿Seguro que desea eliminar el elemento?
+            </div>
             <form ref="formNode" @submit.prevent="submit">
                 <div class="p-4 rounded bg-white shadow">
                     <slot></slot>

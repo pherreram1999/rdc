@@ -122,6 +122,18 @@ abstract class Grid extends \App\Http\Controllers\Controller {
         ]);
     }
 
+    public function show($id,Request $request)
+    {
+        $item = $this->modelClass::findOrFail($id);
+
+        return Inertia::render($this->page,[
+            'item' => $item,
+            'url' => route($this->resource . '.destroy',[$id]),
+            'method' => 'delete',
+            'destroy' => true
+        ]);
+    }
+
     public function update($id,Request $request)
     {
         $item = $this->modelClass::findOrFail($id);
@@ -134,6 +146,13 @@ abstract class Grid extends \App\Http\Controllers\Controller {
 
         $item->save();
 
+        return response()->json([
+            'url' => route($this->resource . '.index')
+        ]);
+    }
+
+    public function destroy($id,Request $request){
+        $this->modelClass::destroy($id);
         return response()->json([
             'url' => route($this->resource . '.index')
         ]);
