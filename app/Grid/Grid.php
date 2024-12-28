@@ -3,6 +3,7 @@
 namespace App\Grid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 /**
@@ -12,8 +13,9 @@ abstract class Grid extends \App\Http\Controllers\Controller {
     protected string $modelClass;
     protected string $title;
     protected string $resource;
-
     private GridToolbar $toolbar;
+
+    protected string $page;
 
     protected string $view = 'Grid';
     private GridColumnCollection $columns;
@@ -45,7 +47,6 @@ abstract class Grid extends \App\Http\Controllers\Controller {
         $this->toolbar = new GridToolbar();
 
         $this->defaultActions();
-
 
     }
 
@@ -84,6 +85,37 @@ abstract class Grid extends \App\Http\Controllers\Controller {
     {
         $this->init();
         return Inertia::render($this->view,$this->toArray());
+    }
+
+    public function create(){
+        return Inertia::render($this->page,[
+            'url' => route($this->resource.'.store'),
+            'backurl' => route($this->resource.'.index'),
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $rules = $this->defineRules();
+        if(count($rules) > 0)
+            $request->validate($rules);
+
+
+        $item = $this->modelClass::create($request->all());
+
+        if(!$item)
+            throw new \Exception('No fue posible crear el registro');
+
+        return response()->json([
+            'url' => route($this->resource . '.index')
+        ]);
+    }
+
+
+    protected function defineRules(): array {
+        return [
+
+        ];
     }
 
 
