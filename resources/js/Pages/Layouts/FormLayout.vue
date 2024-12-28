@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
-import {usePage} from "@inertiajs/vue3";
+import {usePage,router} from "@inertiajs/vue3";
 import {ref} from "vue";
+import Loading from "@/Components/Loading.vue";
+
 
 const page = usePage()
 
@@ -10,14 +12,23 @@ const formNode = ref(null)
 
 const errorMessage =  ref<string>()
 const showError = ref<boolean>(false)
+const loading = ref<boolean>(false)
+const success = ref<boolean>(false)
+
+const backurl = ref<string>('')
 
 async function submit(){
     try {
+        loading.value = true
         const form = new FormData(formNode.value)
         const {data} = await axios.post(url,form)
+        backurl.value = data.url
+        success.value = true
     } catch (e){
         if(!e.response) return
 
+        success.value = false
+        loading.value = false
         const {
             data:  {message}
         } = e.response
@@ -27,10 +38,15 @@ async function submit(){
     }
 }
 
+function done(){
+    router.visit(backurl.value)
+}
+
 </script>
 
 <template>
     <app-layout>
+        <loading v-model:show="loading" :success="success" @continue="done" />
         <div class="container mx-auto mt-4">
             <Transition appear>
                 <div v-if="showError" class="px-4 py-2 bg-red-500 text-white rounded my-4">

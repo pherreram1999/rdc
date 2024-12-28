@@ -41,6 +41,7 @@ class GridRowCollection implements Arrayable
             $col = str_replace('-','.',$request->query('column'));
             $builder->where($col,'like','%'.$request->query('query').'%');
         }
+        $builder->orderBy('id','DESC');
 
         $cols = $this->_grid->getColumns()->getKeys();
         /** @var LengthAwarePaginator $paginator */
