@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import {usePage,router} from "@inertiajs/vue3";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import Loading from "@/Components/Loading.vue";
 
 
 const page = usePage()
 
-const {url} = page.props
+const {url,item,method} = page.props as {
+    url: string,
+    method: string
+    item?: Record<string, any>
+}
 const formNode = ref(null)
 
 const errorMessage =  ref<string>()
@@ -17,10 +21,21 @@ const success = ref<boolean>(false)
 
 const backurl = ref<string>('')
 
+onMounted(() => {
+    if(!item) return
+    let formnode = formNode.value;
+    for(const [key,val] of Object.entries(item)){
+        const input = formnode.querySelector(`[name="${key}"]`)
+        if(!input) continue
+        input.value = val
+    }
+})
+
 async function submit(){
     try {
         loading.value = true
         const form = new FormData(formNode.value)
+        form.set('_method',method)
         const {data} = await axios.post(url,form)
         backurl.value = data.url
         success.value = true

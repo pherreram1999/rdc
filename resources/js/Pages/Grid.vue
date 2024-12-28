@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 import {onBeforeMount, ref} from "vue";
-import {router} from "@inertiajs/vue3";
 
 interface GridColumn {
     label: string,

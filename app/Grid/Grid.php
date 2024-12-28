@@ -90,6 +90,7 @@ abstract class Grid extends \App\Http\Controllers\Controller {
     public function create(){
         return Inertia::render($this->page,[
             'url' => route($this->resource.'.store'),
+            'method' => 'post',
             'backurl' => route($this->resource.'.index'),
         ]);
     }
@@ -105,6 +106,33 @@ abstract class Grid extends \App\Http\Controllers\Controller {
 
         if(!$item)
             throw new \Exception('No fue posible crear el registro');
+
+        return response()->json([
+            'url' => route($this->resource . '.index')
+        ]);
+    }
+
+    public function edit($id,Request $request){
+        $item = $this->modelClass::findOrFail($id);
+
+        return Inertia::render($this->page,[
+            'item' => $item,
+            'url' => route($this->resource . '.update',[$id]),
+            'method' => 'put'
+        ]);
+    }
+
+    public function update($id,Request $request)
+    {
+        $item = $this->modelClass::findOrFail($id);
+
+        $attr = $request->except('_method');
+
+        foreach($attr as $key => $value){
+            $item->{$key} = $value;
+        }
+
+        $item->save();
 
         return response()->json([
             'url' => route($this->resource . '.index')
