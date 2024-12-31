@@ -20,6 +20,7 @@
         "vue": "^3.3.13"
     },
     "dependencies": {
-        "bootstrap-icons": "^1.11.3"
+        "bootstrap-icons": "^1.11.3",
+        "ziggy-js": "^2.4.1"
     }
 }

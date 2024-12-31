@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\TarjetCreditoController;
+use App\Http\Controllers\TipoAdeudoController;
+use App\Http\Controllers\IngresosController;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,5 +27,8 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('tarjeta-credito', TarjetCreditoController::class);
+    Route::resource('Ingresos', IngresosController::class);
+    Route::resource('tipo-adeudos', TipoAdeudoController::class);
+
 });
 
