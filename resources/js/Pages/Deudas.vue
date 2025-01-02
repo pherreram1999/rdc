@@ -7,18 +7,13 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
     <form-layout>
         <div class="grid grid-cols-4 gap-4">
             <div>
-                <!--Cambiar para que sea ingresos en la BD-->
-                <label for="Ingresos">Ingresos</label>
-                <input type="text" name="Ingresos" id="Ingresos" class="input">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="input">
             </div>
         </div>
         <div>
             <label for="Descripcion">Descripción</label>
             <textarea name="Descripcion" id="Descripcion" rows="4" class="input"></textarea>
-        </div>
-        <div>
-            <label for="Concepto">Concepto</label>
-            <textarea name="Concepto" id="Concepto" rows="4" class="input"></textarea>
         </div>
     </form-layout>
 </template>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\TarjetCreditoController;
 use App\Http\Controllers\TipoAdeudoController;
 use App\Http\Controllers\IngresosController;
+use App\Http\Controllers\DeudasController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::middleware([
     Route::resource('tarjeta-credito', TarjetCreditoController::class);
     Route::resource('Ingresos', IngresosController::class);
     Route::resource('tipo-adeudos', TipoAdeudoController::class);
+    Route::resource('Deudas', DeudasController::class);
 
 });
 
