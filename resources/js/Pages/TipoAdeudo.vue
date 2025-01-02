@@ -12,7 +12,7 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
             </div>
         </div>
         <div>
-            <label for="descripcion">Descripcion</label>
+            <label for="descripcion">Descripción</label>
             <textarea name="descripcion" id="descripcion" rows="4" class="input"></textarea>
         </div>
     </form-layout>
