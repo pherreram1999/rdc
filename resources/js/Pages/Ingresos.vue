@@ -7,9 +7,9 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
     <form-layout>
         <div class="grid grid-cols-4 gap-4">
             <div>
-                <!--Cambiar para que sea ingresos en la BD-->
+    <!--Cambiar para que sea ingresos en la BD-->
                 <label for="Ingresos">Ingresos</label>
-                <input type="text" name="Ingresos" id="Ingresos" class="input">
+                <input type="number" name="Ingresos" id="Ingresos" class="input" step="0.01" min="0" required>
             </div>
         </div>
         <div>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
-            $table->String('Ingresos');
+            $table->float('Ingresos', 10, 2); // Definir como FLOAT con precisión (10, 2)
             $table->text('Descripcion')->nullable();
             $table->text('Concepto')->nullable();
             $table->timestamps();
