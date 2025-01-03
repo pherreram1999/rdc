@@ -4,7 +4,8 @@ use App\Http\Controllers\TarjetCreditoController;
 use App\Http\Controllers\TipoAdeudoController;
 use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\DeudasController;
-
+use App\Http\Controllers\QuincenasController;
+use App\Http\Controllers\PresupuestosController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,10 +28,12 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::resource('tarjeta-credito', TarjetCreditoController::class);
+    Route::resource('tarjetas', TarjetCreditoController::class);
     Route::resource('Ingresos', IngresosController::class);
-    Route::resource('tipo-adeudos', TipoAdeudoController::class);
+    Route::resource('Adeudos', TipoAdeudoController::class);
     Route::resource('Deudas', DeudasController::class);
+    Route::resource('Quincenas', QuincenasController::class);
+    Route::resource('Presupuestos', PresupuestosController::class);
 
 });
 

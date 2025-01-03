@@ -7,14 +7,23 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
     <form-layout>
         <div class="grid grid-cols-4 gap-4">
             <div>
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="input">
+                <label for="monto">Monto</label>
+                <input type="number" name="monto" id="monto" class="input" step="0.01">
+            </div>
+            <div>
+                <label for="Fecha de pago">Fecha de pago</label>
+                <input type="date" name="Fecha de pago" id="Fecha de pago" class="input">
+            </div>
+            <div>
+                <label for="acreditor">Acreedor</label>
+                <input type="text" name="acreditor" id="acreditor" class="input">
             </div>
         </div>
         <div>
-            <label for="Descripcion">Descripción</label>
-            <textarea name="Descripcion" id="Descripcion" rows="4" class="input"></textarea>
+            <label for="concepto">Concepto</label>
+            <textarea name="concepto" id="concepto" rows="4" class="input"></textarea>
         </div>
+
     </form-layout>
 </template>
 

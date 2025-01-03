@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingresos', function (Blueprint $table) {
+        Schema::create('presupuestos', function (Blueprint $table) {
             $table->id();
-            $table->float('Monto', 10, 2); // Definir como FLOAT con precisión (10, 2)
-            $table->text('Descripcion')->nullable();
-            $table->text('Concepto')->nullable();
-            $table->date('Fecha');
+            $table->decimal('Ingreso_futuro',10,2);
+            $table->decimal('Gasto_futuro',10,2);
+            $table->text('observaciones')->nullable();
+            $table->date('fecha_estimada');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingresos');
+        Schema::dropIfExists('presupuestos');
     }
 };

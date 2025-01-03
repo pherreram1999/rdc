@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingresos', function (Blueprint $table) {
+        Schema::create('quincenas', function (Blueprint $table) {
             $table->id();
-            $table->float('Monto', 10, 2); // Definir como FLOAT con precisión (10, 2)
-            $table->text('Descripcion')->nullable();
-            $table->text('Concepto')->nullable();
-            $table->date('Fecha');
+            $table->float('Monto', 10, 2);
+            $table->float('Monto_apartado', 10, 2);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingresos');
+        Schema::dropIfExists('quincenas');
     }
 };

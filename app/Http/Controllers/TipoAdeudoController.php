@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TipoAdeudoController extends Grid
 {
     protected string $modelClass = TipoAdeudo::class;
-    protected string $title = 'Tipo de adeudos';
-    protected string $resource = 'tipo-adeudos';
+    protected string $title = 'Adeudos';
+    protected string $resource = 'Adeudos';
     protected string $page = 'TipoAdeudo';
 }

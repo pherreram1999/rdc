@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //cambiar el nombre
         Schema::create('tarjeta_creditos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('no_tarjeta');
             $table->string('tipo');
             $table->double('limite');
+            $table->date('fecha_corte');
+            $table->decimal('tasa_interes',6,2)->nullable();
             $table->text('observaciones')->nullable();
             $table->timestamps();
         });

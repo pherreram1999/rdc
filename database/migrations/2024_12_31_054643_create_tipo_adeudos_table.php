@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //cambiar nombre a adeudos
         Schema::create('tipo_adeudos', function (Blueprint $table) {
             $table->id();
             $table->string("nombre")->unique();
-            $table->text("descripcion");
+            $table->text("categoria");
             $table->timestamps();
         });
     }

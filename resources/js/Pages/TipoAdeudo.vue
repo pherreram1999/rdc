@@ -12,13 +12,12 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
             </div>
         </div>
         <div>
-            <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" id="descripcion" rows="4" class="input"></textarea>
+            <label for="categoria">categoria</label>
+            <textarea name="categoria" id="categoria" rows="4" class="input"></textarea>
         </div>
     </form-layout>
 </template>
 
 <style scoped>
- 
+
 </style>
- 

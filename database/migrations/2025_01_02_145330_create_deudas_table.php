@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('deudas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->text('Descripcion');
+            $table->decimal('monto',10,2);
+            $table->date('fecha de pago');
+            $table->string('acreditor');
+            $table->text('concepto');
             $table->timestamps();
         });
     }
