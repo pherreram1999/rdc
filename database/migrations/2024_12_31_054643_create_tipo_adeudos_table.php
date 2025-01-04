@@ -16,6 +16,16 @@ return new class extends Migration
             $table->id();
             $table->string("nombre")->unique();
             $table->text("categoria");
+            $table->decimal('adeudo',10,2);
+            //La tarjeta de credito es un Adeudo
+            $table->unsignedBigInteger('tarjeta_credito_id')->nullable();
+            $table->foreign('tarjeta_credito_id')->references('id')->on('tarjeta_creditos');
+            $table->date('fecha_corte')->nullable();
+
+
+            //php artisan adeudos:mover
+            $table->boolean('procesado')->default(false);
+
             $table->timestamps();
         });
     }

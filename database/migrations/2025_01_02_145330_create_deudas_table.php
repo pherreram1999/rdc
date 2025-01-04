@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('deudas', function (Blueprint $table) {
             $table->id();
             $table->decimal('monto',10,2);
+            $table->decimal('interes', 6, 2)->nullable();  // Nuevo campo para almacenar el interés
             $table->date('fecha_de_pago');
             $table->string('acreditor');
-            $table->text('concepto');
+            $table->text('concepto')->nullable();
+            // Relación con adeudos (origen del adeudo)
+            $table->unsignedBigInteger('tipo_adeudo_id')->nullable();
+            $table->foreign('tipo_adeudo_id')->references('id')->on('tipo_adeudos');
+
             $table->timestamps();
         });
     }

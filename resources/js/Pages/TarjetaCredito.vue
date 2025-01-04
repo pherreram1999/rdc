@@ -20,7 +20,7 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
             </div>
             <div>
                 <label for="limite">Límite</label>
-                <input type="number" name="limite" id="limite" class="input" step="0.01" required>
+                <input type="number" name="limite" id="limite" class="input" step="0.01"  required>
             </div>
             <div>
                 <label for="fecha_corte">Fecha de Corte</label>

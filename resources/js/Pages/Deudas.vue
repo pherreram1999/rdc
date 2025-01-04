@@ -11,6 +11,10 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
                 <input type="number" name="monto" id="monto" class="input" step="0.01">
             </div>
             <div>
+                <label for="interes">interes</label>
+                <input type="number" name="interes" id="interes" class="input" step="0.01">
+            </div>
+            <div>
                 <label for="fecha_de_pago">Fecha de pago</label>
                 <input type="date" name="fecha_de_pago" id="fecha_de_pago" class="input">
             </div>
