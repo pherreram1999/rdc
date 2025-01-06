@@ -1,9 +1,13 @@
 <script setup lang="ts">
 
 import FormLayout from "@/Pages/Layouts/FormLayout.vue";
+import AppLayout from '@/Layouts/AppLayout.vue';
+
 </script>
 
 <template>
+    <AppLayout title="Tarjetas">
+
     <form-layout>
         <div class="grid grid-cols-4 gap-4">
             <div>
@@ -38,6 +42,7 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
         </div>
 
     </form-layout>
+    </AppLayout>
 </template>
 
 <style scoped>
