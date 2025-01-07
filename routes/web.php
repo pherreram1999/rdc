@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\TarjetCreditoController;
 use App\Http\Controllers\TipoAdeudoController;
 use App\Http\Controllers\IngresosController;
@@ -38,6 +39,10 @@ Route::middleware([
     Route::resource('Presupuestos', PresupuestosController::class);
     Route::resource('Simulacion', SimulacionController::class);
 
-    Route::get('/tarjeta-credito/pagar/{id}', [TarjetCreditoController::class, 'pagar'])->name('tarjeta-credito.pagar');
+    Route::get('reporte', ReporteController::class)
+        ->name('reporte');
+
+    Route::get('/tarjeta-credito/pagar/{id}', [TarjetCreditoController::class, 'pagar'])
+        ->name('tarjeta-credito.pagar');
 });
 
