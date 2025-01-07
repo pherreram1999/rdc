@@ -38,5 +38,6 @@ Route::middleware([
     Route::resource('Presupuestos', PresupuestosController::class);
     Route::resource('Simulacion', SimulacionController::class);
 
+    Route::get('/tarjeta-credito/pagar/{id}', [TarjetCreditoController::class, 'pagar'])->name('tarjeta-credito.pagar');
 });
 

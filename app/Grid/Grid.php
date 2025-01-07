@@ -18,8 +18,8 @@ abstract class Grid extends \App\Http\Controllers\Controller {
     protected string $page;
 
     protected string $view = 'Grid';
-    private GridColumnCollection $columns;
-    private GridRowCollection $rows;
+    protected GridColumnCollection $columns;
+    protected GridRowCollection $rows;
     private string $_table;
     private Model $_model;
     protected bool $excludeStamps = true;

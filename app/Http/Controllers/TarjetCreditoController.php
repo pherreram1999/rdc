@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Grid\Grid;
 use App\Models\TarjetaCredito;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TarjetCreditoController extends Grid
 {
@@ -16,13 +17,24 @@ class TarjetCreditoController extends Grid
 
     protected function mounted()
     {
-        $this->toolbar
+        /* //Toolbar
+         * $this->toolbar
             ->actions
             ->addAction(
-                'Tipos',
+                'Pagar',
                 route('tarjetas.index'),
                 'bi-plus'
+            );*/
+        $this->rows
+            ->actions
+            ->addAction(
+                'Pagar',
+                route('tarjeta-credito.pagar',[';id;']),
+                'bi-plus'
             );
+    }
+    public function pagar($id,Request $request){
+        return Inertia::render('PagarTarjeta', []);
     }
 
 }
