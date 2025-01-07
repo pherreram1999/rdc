@@ -21,11 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('tarjeta_credito_id')->nullable();
             $table->foreign('tarjeta_credito_id')->references('id')->on('tarjeta_creditos');
             $table->date('fecha_corte')->nullable();
-
-
             //php artisan adeudos:mover
             $table->boolean('procesado')->default(false);
-
             $table->timestamps();
         });
     }

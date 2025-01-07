@@ -37,4 +37,15 @@ class TarjetCreditoController extends Grid
         return Inertia::render('PagarTarjeta', []);
     }
 
+
+    protected function beforeMount()
+    {
+        $this->rows->actions->addAction(
+            'Tipos',
+            route('tarjeta-credito.tipos.index'),
+            'bi-1-circle-fill',
+        );
+    }
+
+
 }

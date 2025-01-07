@@ -9,6 +9,7 @@
 
         * {
             font-family: system-ui,sans-serif;
+            font-size: 12px;
         }
 
         .tabla  {
