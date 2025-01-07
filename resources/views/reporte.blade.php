@@ -4,9 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Reporte General</title>
+
+    <style>
+
+        * {
+            font-family: system-ui,sans-serif;
+        }
+
+        .tabla  {
+            width: 100%;
+        }
+
+        .tabla th,td {
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        .tabla thead th {
+            border-bottom: 1px solid black;
+        }
+
+        .tabla tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-<table>
+
+<h1>Reporte General</h1>
+
+
+<h2>Ingresos</h2>
+<table class="tabla">
     <thead>
         <tr>
             <th>Monto</th>
@@ -21,7 +50,7 @@
                 <td>{{ $ingreso->Monto  }}</td>
                 <td>{{ $ingreso->Descripcion  }}</td>
                 <td>{{ $ingreso->Concepto  }}</td>
-                <td>{{ $ingreso->Fecha  }}</td>
+                <td style="white-space: nowrap;">{{ $ingreso->Fecha  }}</td>
             </tr>
         @endforeach
     </tbody>

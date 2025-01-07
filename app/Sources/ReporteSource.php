@@ -18,7 +18,7 @@ class ReporteSource
     public function query()
     {
         return [
-            'ingresos' => Ingresos::whereBetween('fecha', [$this->fechaInicio, $this->fechaFin])
+            'ingresos' => Ingresos::whereBetween('fecha', [$this->fechaInicio, $this->fechaFin])->get()
         ];
     }
 

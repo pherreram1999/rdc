@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReporteRequest;
 use App\Sources\ReporteSource;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Spatie\LaravelPdf\Facades\Pdf;
 
 class ReporteController extends Controller
 {
@@ -21,9 +21,10 @@ class ReporteController extends Controller
             fechaInicio: $request->get('fecha_inicio'),
             fechaFin: $request->get('fecha_fin')
         );
+        $pdf = Pdf::loadView('reporte', $source->query());
 
-        return Pdf::view('reporte', $source->query())
-            ->format('letter')
-            ->name('reporte.pdf');
+        $pdf->setPaper('Letter', 'landscape');
+
+        return $pdf->stream('reporte.pdf');
     }
 }
