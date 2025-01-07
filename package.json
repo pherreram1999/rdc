@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.11.3",
+        "puppeteer": "^23.11.1",
         "ziggy-js": "^2.4.1"
     }
 }

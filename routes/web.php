@@ -42,6 +42,8 @@ Route::middleware([
     Route::get('reporte', ReporteController::class)
         ->name('reporte');
 
+    Route::get('reporte/pdf',[ReporteController::class,'renderPDF']);
+
     Route::get('/tarjeta-credito/pagar/{id}', [TarjetCreditoController::class, 'pagar'])
         ->name('tarjeta-credito.pagar');
 });

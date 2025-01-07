@@ -1,6 +1,16 @@
 <script setup lang="ts">
 
 import AppLayout from "@/Layouts/AppLayout.vue";
+import {reactive} from "vue";
+
+
+const fechas = reactive({
+    fecha_inicio: undefined,
+    fecha_fin: undefined
+})
+
+
+
 </script>
 
 <template>
@@ -13,18 +23,19 @@ import AppLayout from "@/Layouts/AppLayout.vue";
                 <div class="grid grid-cols-6 gap-4">
                     <div>
                         <label for="fecha_inicial">Fecha Inicial</label>
-                        <input class="input" type="date" name="fecha" id="fecha_inicial">
+                        <input v-model="fechas.fecha_inicio" class="input" type="date" name="fecha" id="fecha_inicial">
                     </div>
                     <div>
                         <label for="fecha_final">Fecha Final</label>
-                        <input class="input" type="date" name="fecha" id="fecha_inicial">
+                        <input v-model="fechas.fecha_fin" class="input" type="date" name="fecha" id="fecha_inicial">
                     </div>
                     <div class="flex items-end mb-0.5">
-                        <button @click.prevent
-                                class="px-4 py-2 rounded bg-red-500 w-full text-white">
+                        <a target="_blank"
+                           :href="`reporte/pdf?fecha_inicio=${fechas.fecha_inicio}&fecha_fin=${fechas.fecha_fin}`"
+                           class="block px-4 py-2 rounded bg-red-500 w-full text-white">
                             <i class="bi bi-file-earmark-pdf"></i>
                             Expotar PDF
-                        </button>
+                        </a>
                     </div>
                     <div class="flex items-end mb-0.5">
                         <button @click.prevent
