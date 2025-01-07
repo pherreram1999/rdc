@@ -1,9 +1,12 @@
 <script setup lang="ts">
 
 import FormLayout from "@/Pages/Layouts/FormLayout.vue";
+import AppLayout from '@/Layouts/AppLayout.vue';
+
 </script>
 
 <template>
+    <AppLayout title="Deudas">
     <form-layout>
         <div class="grid grid-cols-4 gap-4">
             <div>
@@ -28,7 +31,8 @@ import FormLayout from "@/Pages/Layouts/FormLayout.vue";
             <textarea name="concepto" id="concepto" rows="4" class="input"></textarea>
         </div>
 
-    </form-layout>
+        </form-layout>
+    </AppLayout>
 </template>
 
 <style scoped>

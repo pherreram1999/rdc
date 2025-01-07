@@ -44,6 +44,7 @@ const logout = () => {
                                 <Link :href="route('dashboard')">
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
+
                             </div>
 
                             <!-- Navigation Links -->
@@ -51,6 +52,31 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
+                                <NavLink :href="route('Adeudos.index')" :active="route().current('Adeudos.index')">
+                                    Adeudos
+                                </NavLink>
+                                <NavLink :href="route('Ingresos.index')" :active="route().current('Ingresos.index')">
+                                    Ingresos
+                                </NavLink>
+                                <NavLink :href="route('Deudas.index')" :active="route().current('Deudas.index')">
+                                    Deudas
+                                </NavLink>
+                                <NavLink :href="route('tarjetas.index')" :active="route().current('tarjetas.index')">
+                                    Tarjetas
+                                </NavLink>
+                                <NavLink :href="route('Presupuestos.index')" :active="route().current('Presupuestos.index')">
+                                    Presupuestos
+                                </NavLink>
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Exportar
+                                </NavLink>
+                                <NavLink :href="route('Simulacion.index')" :active="route().current('Simulacion.index')">
+                                    Simular
+                                </NavLink>
+                                <NavLink :href="route('Quincenas.index')" :active="route().current('Quicenas.index')">
+                                    Quincenas
+                                </NavLink>
+
                             </div>
                         </div>
 
@@ -192,7 +218,7 @@ const logout = () => {
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                            Dashboardad
                         </ResponsiveNavLink>
                     </div>
 

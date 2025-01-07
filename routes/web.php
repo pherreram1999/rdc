@@ -6,6 +6,8 @@ use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\DeudasController;
 use App\Http\Controllers\QuincenasController;
 use App\Http\Controllers\PresupuestosController;
+use App\Http\Controllers\SimulacionController;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +36,7 @@ Route::middleware([
     Route::resource('Deudas', DeudasController::class);
     Route::resource('Quincenas', QuincenasController::class);
     Route::resource('Presupuestos', PresupuestosController::class);
+    Route::resource('Simulacion', SimulacionController::class);
 
 });
 
