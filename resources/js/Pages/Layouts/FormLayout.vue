@@ -59,6 +59,7 @@ async function submit(){
 }
 
 function done(){
+    console.log(backurl.value)
     router.visit(backurl.value)
 }
 
