@@ -46,5 +46,8 @@ Route::middleware([
 
     Route::get('/tarjeta-credito/pagar/{id}', [TarjetCreditoController::class, 'pagar'])
         ->name('tarjeta-credito.pagar');
+    Route::post('/tarjetas-credito/procesarpago/{id}', [TarjetCreditoController::class, 'procesapago'])->name('tarjetadecredito.procesar_pago');
+    Route::get('/tarjeta-credito/pagar/{id}', [TarjetCreditoController::class, 'pagar'])->name('tarjeta-credito.pagar');
+
 });
 
