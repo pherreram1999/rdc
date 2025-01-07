@@ -2,6 +2,7 @@
 
 namespace App\Sources;
 
+use App\Models\Deudas;
 use App\Models\Ingresos;
 use Illuminate\View\View;
 
@@ -18,7 +19,8 @@ class ReporteSource
     public function query()
     {
         return [
-            'ingresos' => Ingresos::whereBetween('fecha', [$this->fechaInicio, $this->fechaFin])->get()
+            'ingresos' => Ingresos::whereBetween('fecha', [$this->fechaInicio, $this->fechaFin])->get(),
+            'deudas' => Deudas::whereBetween('created_at', [$this->fechaInicio, $this->fechaFin])->get(),
         ];
     }
 
