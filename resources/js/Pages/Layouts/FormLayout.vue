@@ -77,7 +77,7 @@ function done(){
                     {{ errorMessage }}
                 </div>
             </Transition>
-            <div class="px-4 py-2 rounded font-semibold bg-orange-500 text-xl my-4 text-white">
+            <div v-if="destroy" class="px-4 py-2 rounded font-semibold bg-orange-500 text-xl my-4 text-white">
                 <i class="bi bi-exclamation-triangle"></i>
                 ¿Seguro que desea eliminar el elemento?
             </div>

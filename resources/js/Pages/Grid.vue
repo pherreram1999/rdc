@@ -105,7 +105,7 @@ function buscar(){
                     </button>
                 </div>
             </div>
-            <div class="flex">
+            <div class="flex gap-4">
                 <Link class="px-4 py-2 rounded bg-white shadow mb-2 border-b-4" v-for="l of toolbar.actions" :href="l.url">
                     <i :class="['bi',l.icon]"></i>
                     {{ l.label }}

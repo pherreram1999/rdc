@@ -48,13 +48,15 @@ abstract class Grid extends \App\Http\Controllers\Controller {
 
         $this->defaultActions();
 
+        $this->mounted();
+
     }
 
     /**
      * @param Model $model
      * @return void
      */
-    protected function beforeMount(mixed $model){
+    protected function mounted(){
 
     }
 

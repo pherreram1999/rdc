@@ -13,4 +13,16 @@ class TarjetCreditoController extends Grid
     protected string $resource = 'tarjetas';
     protected string $page = 'TarjetaCredito';
 
+
+    protected function mounted()
+    {
+        $this->toolbar
+            ->actions
+            ->addAction(
+                'Tipos',
+                route('tarjetas.index'),
+                'bi-plus'
+            );
+    }
+
 }
