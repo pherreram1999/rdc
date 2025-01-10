@@ -55,5 +55,27 @@
         @endforeach
     </tbody>
 </table>
+
+<h2>Deudas</h2>
+<table class="tabla">
+    <thead>
+    <tr>
+        <th>Monto</th>
+        <th>Descripción</th>
+        <th>Concepto</th>
+        <th>Fecha</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($deuda as $deuda)
+        <tr>
+            <td>{{ $deuda->monto  }}</td>
+            <td>{{ $deuda->interes  }}</td>
+            <td>{{ $ingreso->concepto  }}</td>
+            <td style="white-space: nowrap;">{{ $ingreso->acreditor  }}</td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
 </body>
 </html>
