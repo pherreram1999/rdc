@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('no_tarjeta');
             $table->string('tipo');
-            $table->decimal('limite',10,2); //monto
+            $table->decimal('limite',10,2);
             $table->date('fecha_corte');
             $table->decimal('tasa_interes',6,2)->nullable();
             $table->text('observaciones')->nullable();

@@ -34,6 +34,37 @@ class TarjetCreditoController extends Grid
                 'bi bi-credit-card'
             );
     }
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nombre' => 'required|string',
+            'no_tarjeta' => 'required|string',
+            'tipo' => 'required|string',
+            'limite' => 'required|numeric',
+            'fecha_corte' => 'required|date',
+            'tasa_interes' => 'nullable|numeric',
+            'observaciones' => 'nullable|string',
+        ]);
+
+        // Obtener el ID del usuario autenticado
+        $userId = auth()->user()->id;
+
+        // Crear la tarjeta con el user_id
+        TarjetaCredito::create([
+            'nombre' => $validated['nombre'],
+            'no_tarjeta' => $validated['no_tarjeta'],
+            'tipo' => $validated['tipo'],
+            'limite' => $validated['limite'],
+            'fecha_corte' => $validated['fecha_corte'],
+            'tasa_interes' => $validated['tasa_interes'],
+            'observaciones' => $validated['observaciones'],
+            'user_id' => $userId,  // Asegúrate de pasar el user_id
+        ]);
+
+        return response()->json(['url' => route('tarjetas.index')]);
+    }
+
+
     public function pagar($id, Request $request){
 
         $tarjeta = TarjetaCredito::find($id);

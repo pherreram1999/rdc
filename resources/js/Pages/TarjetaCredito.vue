@@ -40,6 +40,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             <label for="observaciones">Observaciones</label>
             <textarea name="observaciones" id="observaciones" rows="4" class="input"></textarea>
         </div>
+        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
     </form-layout>
     </AppLayout>
