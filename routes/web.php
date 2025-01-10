@@ -9,6 +9,7 @@ use App\Http\Controllers\QuincenasController;
 use App\Http\Controllers\PresupuestosController;
 use App\Http\Controllers\SimulacionController;
 use App\Http\Controllers\CsvExportController;
+use App\Http\Controllers\ExcelController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,7 @@ Route::middleware([
 
     Route::get('reporte/pdf',[ReporteController::class,'renderPDF']);
     Route::get('/reporte/exportar-csv', [CsvExportController::class, 'exportToCsv']);
+    Route::get('/reporte/exportar-xlsx', [ExcelController::class, 'exportToExcel']);
 
 
     Route::get('/tarjeta-credito/pagar/{id}', [TarjetCreditoController::class, 'pagar'])

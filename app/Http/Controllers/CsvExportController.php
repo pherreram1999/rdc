@@ -40,7 +40,7 @@ class CsvExportController extends Controller
 
         $file = fopen($filePath, 'w');
 
-// Escribir la tabla de 'ingresos'
+        // Escribir la tabla de 'ingresos'
         fputcsv($file, ['Tabla: Ingresos']);
         fputcsv($file, ['ID', 'Monto', 'Descripcion', 'Concepto', 'Fecha Creacion']);
         foreach ($tabla1 as $row) {

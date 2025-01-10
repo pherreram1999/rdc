@@ -51,11 +51,14 @@ const fechas = reactive({
                     </div>
 
                     <div class="flex items-end mb-0.5">
-                        <button @click.prevent
-                                class="px-4 py-2 rounded bg-green-600 w-full text-white">
+                        <a target="_blank"
+                           :href="`/reporte/exportar-xlsx?fecha_inicio=${fechas.fecha_inicio}&fecha_fin=${fechas.fecha_fin}`"
+                                class="px-4 py-2 rounded bg-green-600 w-full text-white"
+                            :class="{ 'opacity-50 cursor-not-allowed': !fechas.fecha_inicio || !fechas.fecha_fin }"
+                           :disabled="!fechas.fecha_inicio || !fechas.fecha_fin">
                             <i class="bi bi-file-earmark-excel"></i>
                             Expotar Excel
-                        </button>
+                        </a>
                     </div>
 
                 </div>
