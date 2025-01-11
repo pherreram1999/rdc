@@ -43,13 +43,25 @@ class ReporteController extends Controller
         // cargamos la libreria grafica
 
         MtJpGraph::load('pie');
-        $countGraph = new \PieGraph();
 
-        $countGraph->title->Set('No. Ingresos');
-        $countPlot = new \PiePlot($countData);
-        $countPlot->SetLegends(["Ingresos","Deudas"]);
-        $countGraph->Add($countPlot);
-        dd($countGraph->Stroke());
+        $makeGraph = function (array $data,array $legends): string {
+            $countGraph = new \PieGraph();
+            $countGraph->title->Set('No. Ingresos');
+            $countPlot = new \PiePlot($data);
+            $countPlot->SetLegends($legends);
+            $countGraph->Add($countPlot);
+            ob_start();
+            $imageHandle = $countGraph->Stroke(_IMG_HANDLER);
+            imagepng($imageHandle);
+            $imageData = ob_get_contents();
+            ob_end_clean();
+            return $imageData;
+        };
+
+
+        dd($makeGraph($countData,['Ingresos','Deudas']));
+
+
 
 
         $pdf = Pdf::loadView('reporte', $datos);
