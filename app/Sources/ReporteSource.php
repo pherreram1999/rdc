@@ -11,8 +11,7 @@ class ReporteSource
     public function __construct(
         private string $fechaInicio,
         private string $fechaFin
-    )
-    {
+    ) {
 
     }
 
