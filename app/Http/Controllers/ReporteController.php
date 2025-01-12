@@ -43,6 +43,10 @@ class ReporteController extends Controller
             $datos['deudas']->sum('monto'),
         ];
 
+
+        $datos['renderCountIngreso'] = $countData['ingresos'] > 0;
+        $datos['renderCountDeudas'] = $countData['deudas'] > 0;
+
         // cargamos la libreria grafica
 
         MtJpGraph::load('pie');
