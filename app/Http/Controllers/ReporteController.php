@@ -44,8 +44,7 @@ class ReporteController extends Controller
         ];
 
 
-        $datos['renderCountIngreso'] = $countData['ingresos'] > 0;
-        $datos['renderCountDeudas'] = $countData['deudas'] > 0;
+        $mustRenderGraph = $countData[0] > 0;
 
         // cargamos la libreria grafica
 
@@ -68,11 +67,13 @@ class ReporteController extends Controller
 
 
 
-        $datos['countGraphSrc'] = $makeGraph('No. Movimientos',$countData,['Ingresos','Deudas']);
-        $datos['moneyGraphSrc'] = $makeGraph('Monto Total',$moneyData,['Ingresos','Deudas']);
+        if($mustRenderGraph){
+            $datos['countGraphSrc'] = $makeGraph('No. Movimientos',$countData,['Ingresos','Deudas']);
+            $datos['moneyGraphSrc'] = $makeGraph('Monto Total',$moneyData,['Ingresos','Deudas']);
+        }
 
 
-
+        $datos['mustRenderGraph'] = $mustRenderGraph;
 
         $pdf = Pdf::loadView('reporte', $datos);
 
