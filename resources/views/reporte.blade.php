@@ -37,8 +37,22 @@
     </style>
 </head>
 <body>
-
 <h1 class="title">Reporte General</h1>
+<h2>{{ $legend  }}</h2>
+
+<table>
+    <tr>
+        <td>
+            <img src="{{ $countGraphSrc  }}" alt="cantidad de registros">
+        </td>
+        <td>
+            <img src="{{ $moneyGraphSrc  }}" alt="Monto de registros">
+        </td>
+    </tr>
+</table>
+
+
+<h2 class="title">Ingresos</h2>
 
 <table class="tabla">
     <thead>

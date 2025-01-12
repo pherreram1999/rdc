@@ -30,6 +30,9 @@ class ReporteController extends Controller
         $datos = $source->query();
 
 
+        $datos['legend'] = "reporte generado con fechas {$request->get('fecha_inicio')} a {$request->get('fecha_fin')}";
+
+
         $countData = [
             $datos['ingresos']->count(),
             $datos['deudas']->count(),
@@ -44,9 +47,10 @@ class ReporteController extends Controller
 
         MtJpGraph::load('pie');
 
-        $makeGraph = function (array $data,array $legends): string {
+        $makeGraph = function (string $title,array $data,array $legends): string {
+
             $countGraph = new \PieGraph();
-            $countGraph->title->Set('No. Ingresos');
+            $countGraph->title->Set($title);
             $countPlot = new \PiePlot($data);
             $countPlot->SetLegends($legends);
             $countGraph->Add($countPlot);
@@ -55,11 +59,13 @@ class ReporteController extends Controller
             imagepng($imageHandle);
             $imageData = ob_get_contents();
             ob_end_clean();
-            return $imageData;
+            return 'data:image/png;base64,' . base64_encode($imageData);
         };
 
 
-        dd($makeGraph($countData,['Ingresos','Deudas']));
+
+        $datos['countGraphSrc'] = $makeGraph('No. Movimientos',$countData,['Ingresos','Deudas']);
+        $datos['moneyGraphSrc'] = $makeGraph('Monto Total',$moneyData,['Ingresos','Deudas']);
 
 
 
@@ -68,6 +74,9 @@ class ReporteController extends Controller
 
         $pdf->setPaper('Letter', 'landscape');
 
-        return $pdf->stream('reporte.pdf');
+        return $pdf->stream('reporte.pdf')->withHeaders([
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="reporte.pdf"'
+        ]);
     }
 }
